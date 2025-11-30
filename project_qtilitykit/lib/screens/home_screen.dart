@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_qtilitykit/main.dart'; // <- needed to access QtilityKitAppState
-import 'package:project_qtilitykit/overlay_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,8 +7,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _overlayActive = false;
-
   final List<Map<String, dynamic>> tools = [
     {'name': 'QR Tools', 'icon': Icons.qr_code, 'route': '/qr'},
     {'name': 'Translator', 'icon': Icons.translate, 'route': '/translate'},

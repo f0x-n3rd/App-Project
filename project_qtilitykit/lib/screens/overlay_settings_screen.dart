@@ -20,8 +20,18 @@ class _OverlaySettingsScreenState extends State<OverlaySettingsScreen> {
   @override
   void initState() {
     super.initState();
+    _syncInitialState();
     // Optionally check current state of overlay (if you save it in prefs) or assume false.
     // If you persist overlay state, read it here and set _overlayEnabled accordingly.
+  }
+
+  Future<void> _syncInitialState() async {
+    try {
+      final running = await _channel.invokeMethod<bool>("isOverlayActive");
+      setState(() {
+        _overlayEnabled = running == true;
+      });
+    } catch (_) {}
   }
 
   Future<bool> _nativeCheckOverlayPermission() async {

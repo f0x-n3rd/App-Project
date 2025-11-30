@@ -152,6 +152,11 @@ class OverlayService : Service() {
 
         // Keep your broadcast receiver registration here
         // (with Context.RECEIVER_NOT_EXPORTED)
+
+        val prefs = getSharedPreferences("qtility_overlay_prefs", Context.MODE_PRIVATE)
+        prefs.edit {
+            putBoolean("overlay_running", true)
+        }
     }
 
     override fun onDestroy() {
@@ -181,6 +186,11 @@ class OverlayService : Service() {
             unregisterReceiver(quickToolsReceiver)
         } catch (e: Exception) {
             // ignore (already unregistered or service shutting down)
+        }
+
+        val prefs = getSharedPreferences("qtility_overlay_prefs", Context.MODE_PRIVATE)
+        prefs.edit {
+            putBoolean("overlay_running", false)
         }
     }
 

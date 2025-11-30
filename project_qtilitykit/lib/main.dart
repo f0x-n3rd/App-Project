@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project_qtilitykit/screens/about_screen.dart';
+import 'package:project_qtilitykit/screens/clipboard_screen.dart';
 import 'package:project_qtilitykit/screens/donate_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'screens/document_scanner_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/notes_screen.dart';
 import 'screens/overlay_settings_screen.dart';
 import 'screens/qrtool_screen.dart';
+import 'screens/translator_screen.dart';
+import 'screens/phrasebook_screen.dart';
+import 'screens/unit_converter_screen.dart';
 
 // Temporary placeholder screen
 class PlaceholderScreen extends StatelessWidget {
@@ -100,16 +106,15 @@ class QtilityKitAppState extends State<QtilityKitApp> {
       // Navigation routes
       routes: {
         '/qr': (context) => const QRToolScreen(),
-        '/translate': (context) => const PlaceholderScreen(title: 'Translator'),
-        '/unit': (context) => const PlaceholderScreen(title: 'Unit Converter'),
-        '/notes': (context) => const PlaceholderScreen(title: 'Notes'),
-        '/clipboard': (context) =>
-            const PlaceholderScreen(title: 'Clipboard Manager'),
-        '/scanner': (context) =>
-            const PlaceholderScreen(title: 'Document Scanner (OCR)'),
+        '/translate': (context) => const TranslatorScreen(),
+        '/unit': (context) => const UnitConverterScreen(),
+        '/notes': (context) => const NotesScreen(),
+        '/clipboard': (context) => const ClipboardScreen(),
+        '/scanner': (context) => const DocumentScannerScreen(),
         '/overlaySettings': (context) => const OverlaySettingsScreen(),
         '/about': (context) => const AboutScreen(),
         '/donate': (context) => const DonateScreen(),
+        '/phrasebook': (context) => const PhrasebookScreen(),
       },
     );
   }

@@ -1,5 +1,11 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'services/clipboard_service.dart';
+
+Timer? _clipboardTimer;
+String? _lastClipboard;
 
 /// OverlayController
 /// - Wrapper around MethodChannel 'overlay_channel'
@@ -35,23 +41,34 @@ class OverlayController {
   }
 
   /// Start the overlay service (requests are handled by MainActivity -> service)
-  static Future<String?> startOverlay() async {
-    try {
-      final res = await _channel.invokeMethod('startOverlay');
-      return res as String?;
-    } on PlatformException catch (e) {
-      return 'Error: ${e.message}';
-    }
+  static Future<void> startOverlay() async {
+    await _channel.invokeMethod("startOverlay");
+
+    // Start clipboard watcher
+    _clipboardTimer?.cancel();
+    _clipboardTimer = Timer.periodic(const Duration(milliseconds: 600), (
+      _,
+    ) async {
+      final data = await Clipboard.getData(Clipboard.kTextPlain);
+
+      final text = data?.text;
+      if (text != null && text.trim().isNotEmpty) {
+        if (_lastClipboard != text) {
+          _lastClipboard = text;
+          await ClipboardService.addEntry(text);
+        }
+      }
+    });
   }
 
   /// Stop the overlay
-  static Future<String?> stopOverlay() async {
-    try {
-      final res = await _channel.invokeMethod('stopOverlay');
-      return res as String?;
-    } on PlatformException catch (e) {
-      return 'Error: ${e.message}';
-    }
+  static Future<void> stopOverlay() async {
+    await _channel.invokeMethod("stopOverlay");
+
+    // Stop polling
+    _clipboardTimer?.cancel();
+    _clipboardTimer = null;
+    _lastClipboard = null;
   }
 
   /// Update quick tools list on the native overlay.
