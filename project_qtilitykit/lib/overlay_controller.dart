@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
 import 'services/clipboard_service.dart';
 
 Timer? _clipboardTimer;

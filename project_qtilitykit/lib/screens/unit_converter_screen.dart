@@ -253,10 +253,11 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
           LengthUnit.values,
           (v) {
             setState(() {
-              if (isFrom)
+              if (isFrom) {
                 _fromLength = v;
-              else
+              } else {
                 _toLength = v;
+              }
               _convert();
             });
           },
@@ -268,10 +269,11 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
           WeightUnit.values,
           (v) {
             setState(() {
-              if (isFrom)
+              if (isFrom) {
                 _fromWeight = v;
-              else
+              } else {
                 _toWeight = v;
+              }
               _convert();
             });
           },
@@ -283,10 +285,11 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
           TemperatureUnit.values,
           (v) {
             setState(() {
-              if (isFrom)
+              if (isFrom) {
                 _fromTemp = v;
-              else
+              } else {
                 _toTemp = v;
+              }
               _convert();
             });
           },
@@ -298,10 +301,11 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
           VolumeUnit.values,
           (v) {
             setState(() {
-              if (isFrom)
+              if (isFrom) {
                 _fromVolume = v;
-              else
+              } else {
                 _toVolume = v;
+              }
               _convert();
             });
           },

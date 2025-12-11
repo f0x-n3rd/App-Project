@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_qtilitykit/main.dart'; // <- needed to access QtilityKitAppState
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
